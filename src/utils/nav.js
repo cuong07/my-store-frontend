@@ -1,27 +1,27 @@
 export const navbarItems = [
     {
         text: "Home",
-        path: "/"
+        path: ""
     },
     {
         text: "Shop",
-        path: "/"
+        path: "products"
     },
     {
         text: "Hodies",
-        path: "/"
+        path: "hodies"
     },
     {
         text: "T-Shirts",
-        path: "/"
+        path: "t-shirts"
     },
     {
         text: "accessories",
-        path: "/"
+        path: "accessories"
     },
     {
         text: "jackets",
-        path: "/"
+        path: "jackets"
     },
 
 ]

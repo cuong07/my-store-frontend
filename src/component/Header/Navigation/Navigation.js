@@ -6,7 +6,7 @@ const Navigation = () => {
     return (
         <>
             {navbarItems?.map(item => (
-                <NavLink key={item.text}>
+                <NavLink key={item.text} to={item.path} className={({ isActive }) => isActive ? "text-blue-400" : "text-black"}>
                     {item.text}
                 </NavLink>
             ))}
