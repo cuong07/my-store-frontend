@@ -9,9 +9,18 @@ module.exports = {
       "logo": ["Josefin Sans", "Arial", "sans-serif"],
       "nav": ["Jost"],
       "slider-text": ["Josefin Sans"],
+      "sale": ["Playfair Display"]
     },
     letterSpacing: {
-      "slider": ".25em"
+      "slider": ".25em",
+      "tightest": '-.075em',
+      "tighter": '-.05em',
+      "tight": '-.025em',
+      "normal": '0',
+      "wide": '.025em',
+      "wider": '.05em',
+      "widest": '.1em'
+
     },
     screens: {
       "480": "480px",

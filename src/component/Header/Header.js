@@ -2,14 +2,12 @@
 import React, { useState } from 'react'
 import Navigation from './Navigation/Navigation'
 import icons from '../../utils/icons'
+import { Link } from 'react-router-dom';
 
 const { RiUserLine, AiOutlineHeart, BsCart, AiOutlineMenu, AiOutlineClose } = icons;
 
 const Header = () => {
     const [isShowNav, setIsShowNav] = useState(false);
-
-
-
 
     const handlerToggoleMenu = () => {
         setIsShowNav(!isShowNav)
@@ -23,13 +21,13 @@ const Header = () => {
                     <AiOutlineMenu size={24} />
                 </span>
                 <div className='font-logo font-bold text-[27px] leading-7'>
-                    <h2 className='tracking-tighter'>MC.CLUB</h2>
+                    <Link to="/"><h2 className='tracking-tighter'>MC.CLUB</h2></Link>
                 </div>
-                <div className="hidden 992:flex font-logo font-bold text-[14px] uppercase gap-4 pt-1  ">
+                <div className="hidden 992:flex font-logo font-bold text-[14px]  gap-4 pt-1  ">
                     <Navigation />
                 </div>
                 {isShowNav &&
-                    <div className="flex font-logo font-bold text-[14px] cursor-pointer uppercase gap-4 pt-1 flex-col absolute left-0 top-full  items-center animate-slide-right bg-[#cccccc90] w-full h-screen">
+                    <div className="flex font-logo font-bold text-[14px] cursor-pointer  gap-4 pt-1 flex-col absolute left-0 top-full  items-center animate-slide-right bg-[#cccccc90] w-full h-screen">
                         <Navigation />
                         <AiOutlineClose size={24} className="absolute right-0 top-0 cursor-pointer" onClick={() => setIsShowNav(false)} />
                     </div>

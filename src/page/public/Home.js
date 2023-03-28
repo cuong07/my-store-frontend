@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
-import { Slider } from '../../component';
+import { Features, HomeProducts, Slider } from '../../component';
 import publicSlice from '../../store/publicSlice';
 import * as apis from "../../apis"
 import { useDispatch } from 'react-redux';
+import bgSale from "../../assets/img/Rectangle.png"
 const Home = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         const fetchPublic = async () => {
             const response = await apis.getPublic();
-            console.log(response);
             dispatch(publicSlice.actions.getPublic(response?.data?.data))
         }
         fetchPublic()
@@ -16,8 +16,29 @@ const Home = () => {
 
     return (
         <>
-            <div className='h-[90%] overflow-hidden relative'>
-                <Slider />
+            <div className=''>
+                <div className='h-[90%] overflow-hidden relative'>
+                    <Slider />
+                </div>
+                <div className='flex  justify-center'>
+                    <Features />
+                </div>
+                <div className='flex justify-center'>
+                    <HomeProducts />
+                </div>
+                <div className='relative'>
+                    <img src={bgSale} alt="Sale" />
+                    <div className='absolute z-10 top-1/4 pl-[50%] -translate-x-[25%] hidden 768:flex text-white gap-10 '>
+                        <p className='flex flex-col'>
+                            <span className="text-[66px] font-sale font-semibold">Get <strike className='italic'>20%</strike> <strong>OFF</strong> on your first purchase</span>
+                            <span>Sign Up for our newsletter and never miss any offers</span>
+                        </p>
+                        <form className='flex flex-col mt-8 gap-6'>
+                            <input type="email" placeholder='your email address' required className='px-3 py-1 rounded-md outline-none text-black' />
+                            <button type='submit' className='bg-black duration-300 hover:bg-white hover:text-black border-2 px-3 py-1 rounded-md border-black'>Subscribe now</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </>
     )
