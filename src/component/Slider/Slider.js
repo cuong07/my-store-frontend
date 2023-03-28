@@ -15,10 +15,10 @@ const Slider = () => {
             <div className='font-logo font-bold text-[300px] leading-[300px] tracking-slider text-[#00000020]'>MC.CLUB</div>
             <div className='font-logo font-bold text-[300px] leading-[300px] tracking-slider'>MC.CLUB</div>
             <img src={image?.url} alt='bg' className='absolute top-0 z-10 min-w-max  ' />
-            <div className='absolute 768:top-[40%] top-1/4 translate-x-1/4 768:ml-[25%] flex flex-col  text-white bg-black p-5 gap-4 z-20 items-center rounded-md duration-500 animate-slide-right'>
+            <div className='absolute 768:top-[40%] top-1/4 mx-[10%] translate-x-1/4 768:ml-[25%] flex flex-col  text-white bg-black p-5 gap-4 z-20 items-center rounded-md duration-500 animate-slide-right'>
                 <div className=''>
-                    <div className='768:text-[88px] text-[66px] leading-none font-bold uppercase tracking-tightest'>Street</div>
-                    <div className='768:text-[88px] text-[66px] leading-none font-bold uppercase tracking-tightest'>wears</div>
+                    <div className='768:text-[88px] text-[72px] leading-none font-bold uppercase tracking-tightest'>Street</div>
+                    <div className='768:text-[88px] text-[72px] leading-none font-bold uppercase tracking-tightest'>wears</div>
                 </div>
                 <span className='font-semibold text-[14px] uppercase'>High quality cool tshirts for street fashion</span>
                 <Link
