@@ -10,6 +10,8 @@ const path = {
     BOTTOMS: '/bottoms',
     OUTERWEARS: '/outerwears',
     ACCESSORIES: '/accessories',
-    PRODUCTDETAIL: '/:productType/:id'
+    PRODUCTDETAIL: '/:productType/:id',
+    LOGIN: '/login',
+    SIGNUP: '/signup',
 }
 export default path;

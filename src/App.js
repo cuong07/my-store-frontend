@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router';
 import './App.css';
 import { Products, ProductDetail } from './component';
-import { Home, Public } from './page/public';
+import { Home, Login, Public, Signup } from './page/public';
 import path from './utils/path'
 
 function App() {
@@ -17,6 +17,9 @@ function App() {
           <Route path={path.OUTERWEARS} element={<Products />} />
           <Route path={path.ACCESSORIES} element={<Products />} />
           <Route path={path.PRODUCTDETAIL} element={<ProductDetail />} />
+          <Route path={path.LOGIN} element={<Login />} />
+          <Route path={path.SIGNUP} element={<Signup />} />
+
         </Route>
       </Routes>
     </>
