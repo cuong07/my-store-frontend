@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     productType: null,
     productId: null,
-    oproductTypePath: "",
+    oproductTypePath: "mens",
     products: null
 }
 

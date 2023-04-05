@@ -4,15 +4,23 @@ import publicSlice from '../../store/publicSlice';
 import * as apis from "../../apis"
 import { useDispatch } from 'react-redux';
 import bgSale from "../../assets/img/Rectangle.png"
+import { useLocation } from 'react-router';
+import productsSlice from '../../store/productsSlice';
+
+
 const Home = () => {
+    const location = useLocation();
     const dispatch = useDispatch();
+    let path = location.pathname.slice(1)
+    console.log(location.pathname);
     useEffect(() => {
         const fetchPublic = async () => {
             const response = await apis.getPublic();
             dispatch(publicSlice.actions.getPublic(response?.data?.data))
+            dispatch(productsSlice.actions.getProductTypePath(path))
         }
         fetchPublic()
-    }, [dispatch])
+    }, [dispatch, path])
 
     return (
         <>

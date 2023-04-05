@@ -43,7 +43,7 @@ const ProductDetail = () => {
                         className="h-[80%] w-full"
                     >
                         {product?.images.map((item) =>
-                            <SwiperSlide>
+                            <SwiperSlide key={item}>
                                 <img src={item} alt="slider" />
                             </SwiperSlide>
                         )}
@@ -60,7 +60,7 @@ const ProductDetail = () => {
                         className="h-[20%] w-full"
                     >
                         {product?.images.map((item) =>
-                            <SwiperSlide>
+                            <SwiperSlide key={item}>
                                 <img src={item} alt="slider" />
                             </SwiperSlide>
                         )}

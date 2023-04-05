@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react';
 import productsSlice from '../../store/productsSlice';
 import * as apis from "../../apis"
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 const HomeProducts = () => {
     const dispatch = useDispatch();
     const [products, setProducts] = useState();
+
     useEffect(() => {
         const fetchProducts = async () => {
             const response = await apis.getProducts(1);
@@ -35,6 +36,7 @@ const HomeProducts = () => {
                         title={product.title}
                         id={product.id}
                         styles="768:w-1/4 w-1/2 mb-10 "
+                        pathHome="/mens"
                     />
                 )}
             </div>
@@ -51,4 +53,4 @@ const HomeProducts = () => {
     )
 }
 
-export default memo(HomeProducts);
+export default HomeProducts;

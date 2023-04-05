@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import icons from "../../utils/icons"
 
 const { AiOutlineShoppingCart, BsShieldCheck, CiMedal, BsCoin } = icons
@@ -29,4 +29,4 @@ const Features = () => {
     )
 }
 
-export default memo(Features);
+export default Features;

@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import productsSlice from '../../../store/productsSlice';
 
-const ProductItem = ({ image, title, price, id, styles }) => {
+const ProductItem = ({ image, title, price, id, styles, pathHome }) => {
     const { oproductTypePath } = useSelector((state) => state.products)
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    let path = `/${oproductTypePath}/${id}`
+    let path = pathHome ? `${pathHome}/${id}` : `/${oproductTypePath}/${id}`;
     const handleGetProductId = async (id) => {
         dispatch(productsSlice.actions.getProductId(id));
         navigate(path);

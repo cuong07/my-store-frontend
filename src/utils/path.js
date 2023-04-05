@@ -13,5 +13,6 @@ const path = {
     PRODUCTDETAIL: '/:productType/:id',
     LOGIN: '/login',
     SIGNUP: '/signup',
+    ALL_USERS: '/listusers',
 }
 export default path;

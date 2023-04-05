@@ -1,10 +1,13 @@
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router';
 import './App.css';
-import { Products, ProductDetail } from './component';
+import { Products, ProductDetail, AllUser } from './component';
 import { Home, Login, Public, Signup } from './page/public';
 import path from './utils/path'
 
 function App() {
+
+  const user = useSelector(state => state.auth.login.currentUser)
   return (
     <>
       <Routes>
@@ -19,7 +22,7 @@ function App() {
           <Route path={path.PRODUCTDETAIL} element={<ProductDetail />} />
           <Route path={path.LOGIN} element={<Login />} />
           <Route path={path.SIGNUP} element={<Signup />} />
-
+          {user?.user?.admin && <Route path={path.ALL_USERS} element={<AllUser />} />}
         </Route>
       </Routes>
     </>
