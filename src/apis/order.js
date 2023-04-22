@@ -1,4 +1,3 @@
-import request from "../axios"
 import { addOrderError, addOrderStart, addOrderSuccses, getOrderError, getOrderStart, getOrderSuccess } from "../store/orderSlice"
 
 export const orderProducts = async (cartOrder, dispatch, token, requestJWT) => {
@@ -18,7 +17,9 @@ export const getOrderHistory = async (dispatch, token, requestJWT) => {
     dispatch(getOrderStart())
     try {
         const response = await requestJWT.get("/user-order", {
-            headers: { token: `Bearer ${token}` }
+            headers: {
+                token: `Bearer ${token}`,
+            }
         })
         dispatch(getOrderSuccess())
         return response

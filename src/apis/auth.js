@@ -7,7 +7,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     dispatch(authslice.actions.loginStart());
     try {
         const response = await request.post("/user/signin", user, {
-            withCredentials: true
+            withCredentials: true,
         })
         dispatch(authslice.actions.loginSuccess(response.data));
         navigate("/")
