@@ -45,7 +45,7 @@ const OrderHistory = () => {
             let totalPrice = 0;
             const orderDetail = order.map(item => {
                 const orderItem = products.find(product => product.id == item.productId);
-                totalPrice = totalPrice + (orderItem.price * item.quantity);
+                totalPrice = totalPrice + (orderItem?.price * item?.quantity);
                 return { ...item, ...orderItem, totalPrice: totalPrice }
             })
             return orderDetail;
