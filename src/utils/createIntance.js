@@ -2,17 +2,9 @@ import jwt_decode from "jwt-decode";
 import request from "../axios";
 
 
-const config = {
-    headers: {
-        "Content-Type": "application/json"
-    },
-    withCredentials: true
-}
-
-
 const refreshToken = async () => {
     try {
-        const response = await request.post("user/refreshToken", {}, config);
+        const response = await request.post("user/refreshToken", { withCredentials: true });
         return response.data;
     } catch (err) {
         console.log(err);
