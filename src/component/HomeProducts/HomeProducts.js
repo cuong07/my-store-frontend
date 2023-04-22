@@ -12,14 +12,14 @@ const HomeProducts = () => {
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const response = await apis.getProducts(1);
+            const response = await apis.getProducts("men");
             dispatch(productsSlice.actions.getProducts(response.data.data))
             setProducts(response.data.data)
         }
         fetchProducts();
     }, [dispatch])
-    const handlerSetProductType = (productType) => {
-        dispatch(productsSlice.actions.getProductType(productType))
+    const handlerSetProductType = (category) => {
+        dispatch(productsSlice.actions.getProducts(category))
     }
     return (
         <div className='w-[80%] my-10'>
@@ -31,7 +31,7 @@ const HomeProducts = () => {
                 {products?.slice(0, 8).map(product =>
                     <ProductItem
                         key={product.id}
-                        image={product.images}
+                        image={JSON.parse(product?.image)}
                         price={product.price}
                         title={product.title}
                         id={product.id}
@@ -43,7 +43,7 @@ const HomeProducts = () => {
             <div className='w-full flex justify-center my-5'>
                 <Link
                     to="/mens"
-                    onClick={() => { handlerSetProductType(1) }}
+                    onClick={() => { handlerSetProductType("men") }}
                     className="768:text-[16px] text-[12px] text-white rounded-md shadow-md duration-300 uppercase bg-black 768:px-4 768:py-2 px-2 py-1 hover:bg-white hover:text-black border-2 border-black animate-slide-right"
                 >
                     View All Product

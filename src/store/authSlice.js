@@ -51,7 +51,7 @@ const authslice = createSlice({
         },
         logoutSuccess: (state, action) => {
             state.logout.isFetching = false;
-            state.logout.success = true;
+            state.login.currentUser = action.payload;
             state.logout.error = false;
         },
         logoutError: (state, action) => {

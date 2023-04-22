@@ -6,32 +6,32 @@ export const navbarItems = [
     {
         text: "men's",
         path: "mens",
-        productType: 1
+        category: "men"
     },
     {
         text: "women's",
         path: "womens",
-        productType: 2
+        category: "women"
     },
     {
         text: "tops",
         path: "tops",
-        productType: 3
+        category: "top"
     },
     {
         text: "bottoms",
         path: "bottoms",
-        productType: 4,
+        category: "bottom",
     },
     {
         text: "outerwears",
         path: "outerwears",
-        productType: 5
+        category: "outerwear"
     },
     {
         text: "accessories",
         path: "accessories",
-        productType: 6
+        category: "accessorie"
     },
 
 ]

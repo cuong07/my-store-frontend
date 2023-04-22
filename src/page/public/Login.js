@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import * as ReactDOM from 'react-dom';
+
 import icons from '../../utils/icons';
 import * as apis from "../../apis"
-import { useDispatch } from 'react-redux';
+import Loading from '../../UI/Loading';
+
 
 const { AiOutlineLogin, RiUserLine, AiFillEye, AiFillEyeInvisible } = icons;
 const Login = () => {
@@ -11,6 +15,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { isFetching } = useSelector(state => state.auth.login)
 
 
     const handleLogin = (e) => {
@@ -23,7 +28,7 @@ const Login = () => {
     }
     return (
         <div className='w-full h-screen flex justify-center items-center bg-[#f7f7f7]'>
-            <div className='768:w-1/3 w-3/4 h-3/4 shadow-xl bg-white rounded-md flex flex-col justify-around'>
+            <div className='768:w-1/3 w-[95%] h-3/4 shadow-xl bg-white rounded-md flex flex-col justify-around'>
                 <div className='flex flex-col w-full items-center gap-2'>
                     <AiOutlineLogin className="text-blue-500 768:text-[50px] text-[40px]" s />
                     <strong className='t768:text-5xl text-3xl'>Welcome!</strong>
@@ -49,7 +54,7 @@ const Login = () => {
 
                         >
                             <input
-                                type={`${isShowPassword ? "password" : "text"}`}
+                                type={`${!isShowPassword ? "password" : "text"}`}
                                 name='password'
                                 className='outline-none w-full'
                                 onChange={(e) => setPassword(e.target.value)}
@@ -67,6 +72,7 @@ const Login = () => {
                     <button type='submit' className='bg-blue-500 ml-10 px-6 py-3 text-white rounded-md hover:opacity-80'>Login &#8594;</button>
                 </form>
             </div>
+            {isFetching && ReactDOM.createPortal(<Loading />, document.getElementById("loading"))}
         </div>
     )
 }

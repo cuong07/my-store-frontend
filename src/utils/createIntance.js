@@ -1,12 +1,19 @@
 import jwt_decode from "jwt-decode";
 import request from "../axios";
 
+
+const config = {
+    headers: {
+        "Content-Type": "application/json"
+    },
+    withCredentials: true
+}
+
+
 const refreshToken = async () => {
     try {
-        const res = await request.get("/user/refresh", {
-            withCredentials: true,
-        });
-        return res.data;
+        const response = await request.post("user/refreshToken", {}, config);
+        return response.data;
     } catch (err) {
         console.log(err);
     }
@@ -22,10 +29,10 @@ export const createAxios = (user, dispatch, stateSuccess) => {
                 const data = await refreshToken();
                 const refreshUser = {
                     ...user,
-                    token: data.token,
+                    token: data,
                 };
                 dispatch(stateSuccess(refreshUser));
-                config.headers["token"] = "Bearer " + data.accessToken;
+                config.headers["token"] = "Bearer " + data;
             }
             return config;
         },

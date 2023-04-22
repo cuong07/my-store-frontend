@@ -2,22 +2,52 @@
 import React, { useState } from 'react'
 import Navigation from './Navigation/Navigation'
 import icons from '../../utils/icons'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../../apis';
+import { logoutUser } from '../../apis';
+import Swal from 'sweetalert2';
+import { clearCart } from '../../store/cartSlice';
 
-const { RiUserLine, AiOutlineHeart, BsCart, AiOutlineMenu, AiOutlineClose } = icons;
+const { RiUserLine, AiOutlineHeart, BsCart, AiOutlineMenu, AiOutlineClose, IoIosContact, AiOutlineLogin, FiLogIn, AiOutlineHistory,
+    AiOutlineLogout,
+    CgUserList,
+    BiCartAdd } = icons;
 
-const Header = () => {
+const Header = ({ onClickToggle }) => {
     const [isShowNav, setIsShowNav] = useState(false);
     const [isShowLogin, setIsShowLogin] = useState(false);
     const user = useSelector(state => state.auth.login.currentUser)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { cartTotal, cartProducts } = useSelector(state => state.cart)
 
     const handlerToggoleMenu = () => {
         setIsShowNav(!isShowNav)
     }
     const handlerToggoleUser = () => {
         setIsShowLogin(!isShowLogin)
+    }
+    const handlerLogoutUser = () => {
+        Swal.fire({
+            title: 'Bạn chắc chắn muốn đăng xuất?',
+            text: "Tất cả sản phẩm trong giỏ hàng ủa bạn sẽ bị xóa!",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Vâng, đăng xuất!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(clearCart())
+                logoutUser(dispatch);
+                navigate("/login")
+                Swal.fire(
+                    'Đã đăng xuất!',
+                    'Bạn đã đăng xuất thành công.',
+                    'success'
+                )
+            }
+        })
     }
 
     return (
@@ -39,45 +69,42 @@ const Header = () => {
                     </nav>
                 }
             </div>
-            <div className='flex gap-6'>
-                {user && <Link className='text-center flex justify-center'>Hi! {user?.user.username}</Link>}
+            <div className='flex  768:gap-6 gap-2'>
                 <span
                     className='w-[27px] h-[27px] relative cursor-pointer z-40'
                     onClick={() => { handlerToggoleUser() }}
                 >
                     <RiUserLine size={18} className="font-bold absolute bottom-0 left-0" />
                     {isShowLogin &&
-                        <div className='absolute top-full ml-[50%] -translate-x-[50%] rounded-md shadow-md bg-[#cacaca]'>
-                            {!user && <div className='flex flex-col px-8 py-5 gap-3'>
-                                <Link to="/login">SignIn</Link>
-                                <Link to="/signup">SignUp</Link>
+                        <div className='absolute top-full ml-[50%] -translate-x-[50%] 768:w-40 w-40 rounded-md shadow-md bg-[#e6e6e6]'>
+                            {!user && <div className='flex flex-col py-5 text-justify'>
+                                <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' to="/login"> <AiOutlineLogin size={20} />Login</Link>
+                                <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' to="/signup"> <FiLogIn size={20} /> Register</Link>
                             </div>}
-                            {user && <div className='flex flex-col px-8 py-5 gap-3'>
-                                <Link>Hi! {user.user.username}</Link>
-                                <Link>LogOut</Link>
-                                {user?.user.admin && <Link to="/listusers" >All User</Link>}
+                            {user && <div className='flex flex-col py-5 text-justify rounded-md'>
+                                <Link className='flex items-center px-4 gap-2 py-2 '> <IoIosContact size={20} /> Hi! {user.user.username}</Link>
+                                <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' onClick={() => handlerLogoutUser()}> <AiOutlineLogout size={20} /> Logout</Link>
+                                <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' to="/order-history"> <AiOutlineHistory size={20} />Order History</Link>
+                                {user?.user.admin && <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' to="/listusers" > <CgUserList size={20} /> All User</Link>}
+                                {user?.user.admin && <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' to="/add-products" > <BiCartAdd size={20} /> Add Product</Link>}
+                                {user?.user.admin && <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' to="/all-order" > <BiCartAdd size={20} /> All Order</Link>}
                             </div>}
                         </div>
+
                     }
                 </span>
-                <span className='w-[27px] h-[27px] relative' >
-                    <AiOutlineHeart size={18} className="font-bold absolute bottom-0 left-0" />
-                    <span
-                        className='absolute text-[9px] font-semibold tracking-wide w-[17px] h-[17px] bg-black text-white rounded-full flex items-center justify-center top-0 right-0'
-                    >
-                        12
-                    </span>
-                </span>
-                <div className='w-[27px] h-[27px] relative' >
+                <Link className='w-[27px] h-[27px] relative'
+                    onClick={onClickToggle}
+                >
                     <BsCart size={18} className="font-bold absolute bottom-0 left-0" />
                     <span
                         className='absolute text-[9px] font-semibold tracking-wide w-[17px] h-[17px] bg-black text-white rounded-full flex items-center justify-center top-0 right-0'
                     >
-                        2
+                        {cartProducts.length === 0 ? "0" : cartTotal}
                     </span>
-                </div>
-            </div>
-        </div>
+                </Link>
+            </div >
+        </div >
     )
 }
 

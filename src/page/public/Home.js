@@ -1,34 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Features, HomeProducts, Slider } from '../../component';
-import publicSlice from '../../store/publicSlice';
-import * as apis from "../../apis"
-import { useDispatch } from 'react-redux';
 import bgSale from "../../assets/img/Rectangle.png"
-import { useLocation } from 'react-router';
-import productsSlice from '../../store/productsSlice';
-
-
 const Home = () => {
-    const location = useLocation();
-    const dispatch = useDispatch();
-    let path = location.pathname.slice(1)
-    console.log(location.pathname);
-    useEffect(() => {
-        const fetchPublic = async () => {
-            const response = await apis.getPublic();
-            dispatch(publicSlice.actions.getPublic(response?.data?.data))
-            dispatch(productsSlice.actions.getProductTypePath(path))
-        }
-        fetchPublic()
-    }, [dispatch, path])
-
     return (
         <>
-            <div className=''>
+            <div className='w-full'>
                 <div className='h-[90%] overflow-hidden relative'>
                     <Slider />
                 </div>
-                <div className='flex  justify-center'>
+                <div className='flex justify-center'>
                     <Features />
                 </div>
                 <div className='flex justify-center'>

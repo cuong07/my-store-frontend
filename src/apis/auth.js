@@ -6,7 +6,9 @@ import userSlice from "../store/userSlice";
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(authslice.actions.loginStart());
     try {
-        const response = await request.post("/user/signin", user)
+        const response = await request.post("/user/signin", user, {
+            withCredentials: true
+        })
         dispatch(authslice.actions.loginSuccess(response.data));
         navigate("/")
         return response;
@@ -26,12 +28,10 @@ export const signupUser = async (user, dispatch, navigate) => {
     }
 }
 
-export const logoutUser = async (dispatch, navigate) => {
+export const logoutUser = async (dispatch) => {
     dispatch(authslice.actions.logoutStart())
     try {
-        const response = await request.post("/refresh")
-        dispatch(authslice.actions.logoutSuccess())
-        return response;
+        dispatch(authslice.actions.logoutSuccess(null))
     } catch (error) {
         dispatch(authslice.actions.logoutError())
     }
@@ -63,4 +63,3 @@ export const deleteUser = async (token, dispatch, id, requestJWT) => {
         dispatch(userSlice.actions.deleteError)
     }
 }
-

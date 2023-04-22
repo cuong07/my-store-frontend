@@ -1,30 +1,56 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    productType: null,
-    productId: null,
-    oproductTypePath: "mens",
-    products: null
+    addProduct: {
+        isFetching: false,
+        error: false,
+        success: false,
+    },
+    getProducts: {
+        category: "mens",
+        currenPath: "mens",
+        currenProducts: [],
+        products: [],
+    },
+    getProductId: {
+        prodId: ""
+    },
+    getCategory: {
+        currentCategory: ""
+    }
 }
 
 const productsSlice = createSlice({
     name: 'products',
     initialState: initialState,
     reducers: {
-        getProductType: (state, action) => {
-            state.productType = action.payload
+        addProductStart: (state) => {
+            state.addProduct.isFetching = true;
         },
-        getProductId: (state, action) => {
-            state.productId = action.payload
+        addProductSuccess: (state) => {
+            state.addProduct.isFetching = false;
+            state.addProduct.success = false;
         },
-        getProductTypePath: (state, action) => {
-            state.oproductTypePath = action.payload
+        addProductError: (state) => {
+            state.addProduct.isFetching = false;
+            state.addProduct.error = true;
         },
         getProducts: (state, action) => {
-            state.products = action.payload
-        }
+            state.getProducts.category = action.payload;
+        },
+        getAllProducts: (state, action) => {
+            state.getProducts.products = action.payload;
+        },
+        getProductId: (state, action) => {
+            state.getProductId.prodId = action.payload;
+        },
+        setCrurrentPath: (state, action) => {
+            state.getProducts.currenPath = action.payload;
+        },
+        setCurrenProducts: (state, action) => {
+            state.getProducts.currenProducts = action.payload;
+        },
     }
-
 })
 
 export default productsSlice;

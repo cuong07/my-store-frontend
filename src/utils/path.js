@@ -1,8 +1,7 @@
 const path = {
     PUBLIC: '',
     HOME: '/',
-    ADMIN_PRODUCTS: '/admin/products',
-    ADMIN_ADD_PRODUCTS: '/admin/add-products',
+    ADMIN_ADD_PRODUCTS: '/add-products',
     ADMIN_EDIT_PRODUCTS: '/admin/edit-products',
     MENS: '/mens',
     WOMENS: '/womens',
@@ -10,9 +9,12 @@ const path = {
     BOTTOMS: '/bottoms',
     OUTERWEARS: '/outerwears',
     ACCESSORIES: '/accessories',
-    PRODUCTDETAIL: '/:productType/:id',
+    PRODUCTDETAIL: '/:catelory/:id',
     LOGIN: '/login',
     SIGNUP: '/signup',
     ALL_USERS: '/listusers',
+    CART: '/cart',
+    ORDER_HISTORY: '/order-history',
+    ALL_ORDER: '/all-order',
 }
 export default path;

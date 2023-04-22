@@ -1,10 +1,10 @@
 import request from "../axios"
+import productsSlice from "../store/productsSlice";
 
-
-export const getProducts = async (productType) => {
+export const getProducts = async (category) => {
     try {
         const response = await request({
-            url: `/products/${productType}`,
+            url: `/products/${category}`,
         })
         return response;
     } catch (error) {
@@ -12,13 +12,34 @@ export const getProducts = async (productType) => {
     }
 }
 
-export const getProductDetail = async (productType, productId) => {
+export const getAllProducts = async () => {
+    try {
+        const response = await request.get('/product');
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export const getProductDetail = async (category, productId) => {
     try {
         const response = await request({
-            url: `/${productType}/${productId}`
+            url: `/${category}/${productId}`
         });
         return response;
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const addProduct = async (dispatch, product, navigate) => {
+    dispatch(productsSlice.actions.addProductStart())
+    try {
+        const response = await request.post("/add-product", product);
+        dispatch(productsSlice.actions.addProductSuccess());
+        return response;
+    } catch (error) {
+        dispatch(productsSlice.actions.addProductError());
     }
 }
