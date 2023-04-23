@@ -31,7 +31,6 @@ const AddProduct = () => {
         for (let i = 0; i < files.length; i++) {
             formData.append('image', files[i]);
         }
-        formData.append('image', files);
         addProduct(dispatch, formData, navigate);
     };
     return (
@@ -40,7 +39,7 @@ const AddProduct = () => {
                 <header>
                     <h2 className='text-2xl font-bold'>Add Product</h2>
                 </header>
-                <form method='POST' className='w-3/5 flex flex-col gap-4' onSubmit={handleAddProduct} encType="multipart/form-data" >
+                <form encType="multipart/form-data" method='POST' className='w-3/5 flex flex-col gap-4' onSubmit={handleAddProduct}>
                     <div className='flex flex-col gap-3'>
                         <label className='text-lg'>Title</label>
                         <input className='border p-1' type="text" name='title'
@@ -85,6 +84,7 @@ const AddProduct = () => {
                     </div>
                     <button type='submit' className='border p-3 bg-blue-500 text-white rounded-md'>Add Product</button>
                 </form>
+
             </div>
             {isFetching && ReactDOM.createPortal(<Loading />, document.getElementById("loading"))}
         </>

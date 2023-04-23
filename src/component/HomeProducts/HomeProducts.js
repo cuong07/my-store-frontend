@@ -22,7 +22,7 @@ const HomeProducts = () => {
         dispatch(productsSlice.actions.getProducts(category))
     }
     return (
-        <div className='w-[80%] my-10'>
+        <div className='768:w-[80%] w-[95%]  my-10'>
             <div className='flex flex-col items-center my-8'>
                 <h2 className='text-[28px]'>new arrivals</h2>
                 <span className='h-[1px] w-1/12 bg-[#333] '></span>

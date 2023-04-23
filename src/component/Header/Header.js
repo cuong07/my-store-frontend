@@ -63,10 +63,15 @@ const Header = ({ onClickToggle }) => {
                     <Navigation />
                 </nav>
                 {isShowNav &&
-                    <nav className="flex font-logo font-bold text-[14px] cursor-pointer  gap-4 pt-1 flex-col absolute left-0 top-full  items-center animate-slide-right bg-[#cccccc90] w-full h-screen">
-                        <Navigation />
-                        <AiOutlineClose size={24} className="absolute right-0 top-0 cursor-pointer" onClick={() => setIsShowNav(false)} />
+                    <nav className="flex font-logo font-bold text-sm cursor-pointer gap-4 pt-1 z-50 flex-col absolute left-0 top-0 items-center animate-slide-right bg-gray-100 w-full h-screen"
+                        onClick={() => setIsShowNav(false)}
+                    >
+                        <div className="flex-1 flex flex-col justify-center items-center gap-6">
+                            <Navigation />
+                        </div>
+                        <AiOutlineClose size={24} className="absolute right-0 top-0 m-4 cursor-pointer" onClick={() => setIsShowNav(false)} />
                     </nav>
+
                 }
             </div>
             <div className='flex  768:gap-6 gap-2'>

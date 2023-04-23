@@ -32,7 +32,7 @@ const Products = () => {
     return (
         <>
             {
-                !isFetching && products && <div className='w-4/5 h-full flex-wrap flex mb-10 mt-20'>
+                !isFetching && products && <div className='768:w-4/5 w-[95%] h-full flex-wrap flex mb-10 mt-20'>
                     {products?.map(product =>
                         <ProductItem
                             key={product.id}

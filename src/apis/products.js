@@ -36,7 +36,11 @@ export const getProductDetail = async (category, productId) => {
 export const addProduct = async (dispatch, product, navigate) => {
     dispatch(productsSlice.actions.addProductStart())
     try {
-        const response = await request.post("/add-product", product);
+        const response = await request.post("/add-product", product, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
         dispatch(productsSlice.actions.addProductSuccess());
         return response;
     } catch (error) {

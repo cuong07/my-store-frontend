@@ -15,11 +15,12 @@ const Navigation = () => {
                 <NavLink
                     key={item.text}
                     to={item.path}
-                    className={({ isActive }) => isActive ? "text-blue-400 text-[14px]" : "text-black text-[14px]"}
+                    className="text-gray-800 hover:text-blue-400 text-lg "
                     onClick={() => { handlerSetProductType(item.category) }}
                 >
                     {item.text}
                 </NavLink>
+
             ))}
         </>
     )
