@@ -1,36 +1,36 @@
 export const navbarItems = [
     {
         text: "home",
-        path: ""
+        path: "/"
     },
     {
         text: "men's",
-        path: "mens",
+        path: "/mens",
         category: "men"
     },
     {
         text: "women's",
-        path: "womens",
+        path: "/womens",
         category: "women"
     },
     {
         text: "tops",
-        path: "tops",
+        path: "/tops",
         category: "top"
     },
     {
         text: "bottoms",
-        path: "bottoms",
+        path: "/bottoms",
         category: "bottom",
     },
     {
         text: "outerwears",
-        path: "outerwears",
+        path: "/outerwears",
         category: "outerwear"
     },
     {
         text: "accessories",
-        path: "accessories",
+        path: "/accessories",
         category: "accessorie"
     },
 

@@ -30,11 +30,9 @@ module.exports = {
     keyframes: {
       'slide-right': {
         '0%': {
-          '-webkit-transform': ' translateX(-500px);',
           transform: 'translateX(-500px);'
         },
         '100%': {
-          '-webkit-transform': 'translateX(0);',
           transform: 'translateX(0);'
         }
       },
@@ -48,7 +46,7 @@ module.exports = {
       },
       'slide-left2': {
         '0%': {
-          transform: 'translateX(500px);'
+          transform: 'translateX(-100px);'
         },
         '100%': {
           transform: 'translateX(0);'

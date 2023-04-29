@@ -41,7 +41,7 @@ const AllOrder = () => {
     }
     console.log(orders);
     return (
-        <div className='min-h-screen my-20 w-full'>
+        <div className='min-h-screen my-20 w-full flex flex-col items-center'>
             <p className='font-bold text-2xl capitalize'>Đơn hàng</p>
             {orders?.map((order, index) => (
                 <div className='w-full 768:w-3/5 border-collapse border rounded-md shadow-md flex flex-col gap-3 p-4 cursor-pointer' key={index} onClick={() => handleToggleDetailOrder(order[0].id)}>

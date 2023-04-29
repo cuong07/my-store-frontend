@@ -15,6 +15,7 @@ const { SlArrowDown,
 const OrderHistory = () => {
     const { currentUser } = useSelector(state => state.auth.login);
     const { products } = useSelector(state => state.products.getProducts)
+    console.log(products);
     const { isFetching } = useSelector(state => state.order.getOrder)
     const [orders, setOrders] = useState([]);
     const [ordersList, setOrdersList] = useState([]);
@@ -53,7 +54,7 @@ const OrderHistory = () => {
         setOrdersList(orderProductsDetail);
     }, [orders, products])
 
-
+    console.log(ordersList);
     const handleSumTotalPrice = (arr) => {
         let totalCartPrice = 0;
         arr.map(item => totalCartPrice += item.totalPrice)
@@ -65,7 +66,7 @@ const OrderHistory = () => {
             <p className='font-bold text-2xl capitalize'>Lịch sử mua hàng</p>
             {ordersList?.map((order, index) => (
                 <div className='w-full 768:w-3/5 border-collapse border rounded-md duration-500 shadow-md flex flex-col gap-3 p-4 cursor-pointer' key={index} onClick={() => handleToggleDetailCart(order[0].orderId)}>
-                    <div className='flex justify-between items-center'>
+                    <div className='flex justify-between items-center '>
                         <span>Giỏ hàng thứ: {index + 1}</span>
                         <span className='text-gray-400 text-sm'>{moment(order[0]).format("DD-MM-YYYY")}</span>
                         <span>

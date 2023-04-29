@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Features, HomeProducts, Slider } from '../../component';
 import bgSale from "../../assets/img/Rectangle.png"
+import { getAllProducts } from '../../apis';
+import { useDispatch } from 'react-redux';
+import productsSlice from '../../store/productsSlice';
 const Home = () => {
+    const dispatch = useDispatch()
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const products = await getAllProducts();
+            dispatch(productsSlice.actions.getAllProducts(products.data.data))
+        }
+        fetchProducts();
+    }, [dispatch])
     return (
         <>
             <div className='w-full'>

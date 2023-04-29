@@ -13,7 +13,7 @@ const { RiUserLine, AiOutlineHeart, BsCart, AiOutlineMenu, AiOutlineClose, IoIos
     CgUserList,
     BiCartAdd } = icons;
 
-const Header = ({ onClickToggle }) => {
+const Header = ({ onClickToggle, offset }) => {
     const [isShowNav, setIsShowNav] = useState(false);
     const [isShowLogin, setIsShowLogin] = useState(false);
     const user = useSelector(state => state.auth.login.currentUser)
@@ -60,14 +60,14 @@ const Header = ({ onClickToggle }) => {
                     <Link to="/"><h2 className='tracking-tighter'>MC.CLUB</h2></Link>
                 </div>
                 <nav className="hidden 992:flex font-logo font-bold text-[14px]  gap-4 pt-1  ">
-                    <Navigation />
+                    <Navigation offset={offset} />
                 </nav>
                 {isShowNav &&
-                    <nav className="flex font-logo font-bold text-sm cursor-pointer gap-4 pt-1 z-50 flex-col absolute left-0 top-0 items-center animate-slide-right bg-gray-100 w-full h-screen"
+                    <nav className="flex font-logo font-bold text-sm cursor-pointer gap-4 pt-1 z-50 flex-col absolute left-0 top-0 items-center animate-slide-right bg-gray-100 bg-opacity-60 backdrop-blur-md w-full h-screen"
                         onClick={() => setIsShowNav(false)}
                     >
                         <div className="flex-1 flex flex-col justify-center items-center gap-6">
-                            <Navigation />
+                            <Navigation offset={offset} />
                         </div>
                         <AiOutlineClose size={24} className="absolute right-0 top-0 m-4 cursor-pointer" onClick={() => setIsShowNav(false)} />
                     </nav>
@@ -86,7 +86,7 @@ const Header = ({ onClickToggle }) => {
                                 <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' to="/login"> <AiOutlineLogin size={20} />Login</Link>
                                 <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' to="/signup"> <FiLogIn size={20} /> Register</Link>
                             </div>}
-                            {user && <div className='flex flex-col py-5 text-justify rounded-md'>
+                            {user && <div className='flex flex-col py-5 text-justify rounded-md text-black'>
                                 <Link className='flex items-center px-4 gap-2 py-2 '> <IoIosContact size={20} /> Hi! {user.user.username}</Link>
                                 <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' onClick={() => handlerLogoutUser()}> <AiOutlineLogout size={20} /> Logout</Link>
                                 <Link className='flex items-center px-4 gap-2 py-2 hover:bg-[#b1b1b1]' to="/order-history"> <AiOutlineHistory size={20} />Order History</Link>

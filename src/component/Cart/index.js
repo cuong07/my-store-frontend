@@ -18,18 +18,10 @@ const Cart = ({ onClickToggle, pathHome }) => {
     const cartProducts = useSelector(state => state.cart.cartProducts)
     const { currenPath } = useSelector((state) => state.products.getProducts)
     const { currentUser } = useSelector((state) => state.auth.login)
-    const { isFetching, success, error } = useSelector(state => state.order.addOrder)
     let requestJWT = createAxios(currentUser, dispatch, authslice.actions.loginSuccess);
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const products = await getAllProducts();
-            dispatch(productsSlice.actions.getAllProducts(products.data.data))
-        }
-        fetchProducts();
-    }, [dispatch])
     const cartProductsWithDetails = useMemo(() => {
         return cartProducts?.map(cartProduct => {
             // eslint-disable-next-line eqeqeq
