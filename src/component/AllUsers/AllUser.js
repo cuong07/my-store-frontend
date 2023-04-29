@@ -29,9 +29,9 @@ const AllUser = () => {
       confirmButtonText: 'Vâng, xóa nó!'
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteUser(user?.token, dispatch, id, requestJWT)
+        // deleteUser(user?.token, dispatch, id, requestJWT)
         Swal.fire(
-          'Deleted!',
+          'Chưa cho xóa!',
           'Your file has been deleted.',
           'success'
         )
